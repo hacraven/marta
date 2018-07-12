@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<h2>You are currently Standing At:</h2>
+
+<p>
+ 
+  <%= @location.address %>
+</p>
+
+<h2>The closest buses are..</h2>
+
+<%= link_to 'Edit', edit_location_path(@location) %> |
+<%= link_to 'Back', locations_path %>
