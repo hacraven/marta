@@ -1,8 +1,11 @@
 class Location < ApplicationRecord
-		geocoded_by :mylocation
-		after_validation :geocoded_by
+		geocoded_by :my_location
 
-		define my_location
+		validates :address, presence: true
+		validates :city, presence: true
+		after_validation :geocode
+
+		def my_location
 			"#{address}, #{city}, GA"
 	end
 end

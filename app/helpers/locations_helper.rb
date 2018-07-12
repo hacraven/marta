@@ -8,4 +8,5 @@ module LocationsHelper
 			return false
 			
 		end
+	end	
 end
