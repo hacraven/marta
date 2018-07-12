@@ -9,5 +9,18 @@
 
 <h2>The closest buses are..</h2>
 
-<%= link_to 'Edit', edit_location_path(@location) %> |
-<%= link_to 'Back', locations_path %>
+	<% if @bus_count == 0 %>
+		<p>No buses close..Looks like you are walking! Good luck with that!</p>
+	<% else %>
+		 <% @nearby_buses.each do |bus| %>
+		 <p>
+		 		<strong>Route:</strong> <%= bus["ROUTE"] %>
+		 		<strong>Vehicle:</strong> <%= bus["VEHICLE"] %>
+		 		<strong>Next Stop:</strong> <%= bus["TIMEPOINT"] %>
+
+		 </p>
+	<% end %>	 	
+<% end %>	 
+
+<%= link_to "Actually, I'm at ....", root_path %>
+
