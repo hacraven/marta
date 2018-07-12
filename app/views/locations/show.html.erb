@@ -25,11 +25,12 @@
 			$(document).ready(function (){
 				function initialize(){
 				  var userCoords = new google.maps.LatLng(<%= @location.latitude %>, <%= @location.longitude %>);
+
 				  var busCoords = new google.maps.LatLng(<%= bus["LATITUDE"] %>, <%= bus["LONGITUDE"] %>);
 				  
 				  var mapOptions = {
 						center: userCoords,
-						zoom: 13,
+						zoom: 14,
 						scrollwheel: false
 				  }
 
@@ -37,12 +38,41 @@
 				      
 				     
 
-				  // This is the marker for our users position
+				  // This is the marker for our users position (UserMarker)
 				  var userMarker = new google.maps.Marker({
 		        position: userCoords,
 		    		map: map,
 						animation: google.maps.Animation.DROP
 					});
+
+					// This is the marker that shows where the bus is(BusMarker)
+				      var busMarker = new google.maps.Marker({
+				        position: busCoords,
+				        map: map,
+				        animation: google.maps.Animation.DROP
+				      });
+
+				      // Info window and event listener for the bus
+				      var infoWindowBus = new google.maps.InfoWindow({
+				        content: "Bus is here!" 
+				      });
+
+				       google.maps.event.addListener(busMarker, 'click', function() {
+				        infoWindowBus.open(map, busMarker);
+				      });
+
+				       // Info window and event listener for the user
+				      var infoWindowUser = new google.maps.InfoWindow({
+				        content: contentStringUser
+				      });
+
+
+				      // Info window and event listener for the user
+				      var infoWindowUser = new google.maps.InfoWindow({
+				        content: "You are here!"
+				      });
+
+
 
 				}
 				  
